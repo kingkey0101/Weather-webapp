@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap">
+</head>
+
+<body>
+    <div class="app">
+        <div id="loadingSpinner" class="spinner hidden"></div>
+        <h1>Keylan's Weather App</h1>
+        <div class="search">
+            <input type="text" id="cityInput" placeholder="Enter city" />
+            <button id="getWeatherButton">Get Weather</button>
+        </div>
+        <div class="weather-info-overlay">
+
+            <div id="weather" class="weather-info">
+                <!-- Weather details will go here-->
+            </div>
+        </div>
+    </div>
+    <div id="forecast" class="forecast"></div>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+    <div id="particles-js"></div>
+</body>
+
+</html>
