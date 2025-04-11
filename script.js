@@ -14,14 +14,14 @@ async function getWeather() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
   try {
-    document.getElementById('loadingSpinner').classList.remove('hidden');
+   
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error("City not found");
     }
 
     const data = await response.json();
-    console.log(data);
+    console.log("Weather Data", data);
 
     displayWeather(data);
     setBackground(data.weather[0].main);
@@ -56,9 +56,16 @@ async function getWeather() {
 
 function displayWeather(data) {
   const weatherDiv = document.getElementById('weather');
+  const overlay = document.querySelector('.weather-info-overlay');
 
   weatherDiv.classList.remove('visible');
   void weatherDiv.offsetWidth; // Force reflow
+
+  // check if weatherDiv is null to make sure element exists
+  if (!weatherDiv) {
+    console.error('Weather div not found!')
+    return;
+  }
 
   weatherDiv.innerHTML = `
     <h2>${data.name}</h2>
@@ -75,7 +82,10 @@ function displayWeather(data) {
     </div>
   `;
 
+ 
+
   weatherDiv.classList.add('visible');
+  overlay.style.display = 'flex';
 }
 
  
@@ -109,12 +119,13 @@ async function getForecast(lat, lon) {
     const data = await res.json();
 
     const forecastDiv = document.getElementById("forecast");
+    console.log("Clearint forecast")
     forecastDiv.innerHTML = "";
 
     const daily ={};
 
     data.list.forEach(item => {
-      const date = item.dt_txt.split("")[0];
+      const date = item.dt_txt.split(" ")[0];
       if (!daily[date] && item.dt_txt.includes("12:00:00")){
         daily[date] = item;
       }
@@ -142,3 +153,9 @@ async function getForecast(lat, lon) {
 
   
 }
+
+window.onload = () => document.getElementById('cityInput').focus();
+
+document.getElementById('cityInput').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') getWeather();
+} );
