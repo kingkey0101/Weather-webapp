@@ -421,5 +421,60 @@ body.thunderstorm{
     background-blend-mode: overlay;
 }
 
+/* smartphones and mobile devices */
+
+@media (max-width: 768px) {
+    .weather-info, .forcast-day{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .forecast-day{
+        margin: 10px 0;
+    }
+    .weather-details{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather-info-text{
+        margin-top: 10px;
+    }
+
+    .forecast{
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    h2{
+        font-size: 1.5rem;
+    }
+}
+
+/* smaller phones */
+
+@media(max-width: 480px) {
+    body{
+        padding: 10px;
+    }
+
+    .search input, .search button{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .forecast-title{
+        font-size: 0.9rem;
+    }
+
+    .forecast-day p, .forecast-day small{
+        font-size: 0.9rem;
+    }
+
+    .forecast-day img{
+        width: 60px;
+        height: 60px;
+    }
+}
 
   
