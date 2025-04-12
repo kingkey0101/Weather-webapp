@@ -20,6 +20,8 @@ async function getWeather() {
       throw new Error("City not found");
     }
 
+
+
     const data = await response.json();
     console.log("Weather Data", data);
 
@@ -52,6 +54,24 @@ async function getWeather() {
 
     document.getElementById('loadingSpinner').classList.add('hidden');
   }
+
+// dynamic backgrounds
+  function setBackground(weatherMain) {
+    if (weatherMain === "Clear") {
+      document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1400&q=80')";
+    } else if (weatherMain === "Rain") {
+      document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1400&q=80')";
+    } else if (weatherMain === "Clouds") {
+      document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1527766833261-b09c3163a791?auto=format&fit=crop&w=1400&q=80')";
+    } else {
+      document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80')";
+    }
+  
+    document.body.style.backgroundSize = "cover";
+    document.body.style.backgroundPosition = "center";
+    document.body.style.transition = "background-image 0.5s ease-in-out";
+  }
+  
 }
 
 function displayWeather(data) {
